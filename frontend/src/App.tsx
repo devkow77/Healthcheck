@@ -5,18 +5,26 @@ import {
   BodyDetailsTemplate,
   BmiTemplate,
   IlnessTemplate,
+  MedicalParametresTemplate,
+  ResultTemplate,
 } from "./components/templates";
+import { useState } from "react";
+
+type Medical = Record<string, string | number | boolean>;
 
 const App = () => {
   const count = useAppSelector((state) => state.counter.value);
+  const [medical, setMedical] = useState<Medical>({});
 
   return (
     <>
       <Navbar />
-      {count == 0 && <GenderTemplate />}
-      {count == 1 && <BodyDetailsTemplate />}
-      {count == 2 && <BmiTemplate />}
-      {count == 3 && <IlnessTemplate />}
+      {count === 0 && <GenderTemplate />}
+      {count === 1 && <BodyDetailsTemplate />}
+      {count === 2 && <BmiTemplate />}
+      {count === 3 && <IlnessTemplate />}
+      {count === 4 && <MedicalParametresTemplate setValues={setMedical} />}
+      {count === 5 && <ResultTemplate values={medical} />}
       <Footer />
     </>
   );
